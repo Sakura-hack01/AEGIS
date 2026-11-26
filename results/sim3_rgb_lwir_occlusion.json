@@ -1,0 +1,156 @@
+{
+  "simulation": "sim3_rgb_lwir_occlusion",
+  "scenes_per_regime": 12,
+  "results": [
+    {
+      "regime": "clear_day",
+      "modality": "RGB-Only",
+      "precision": 0.8571,
+      "recall": 1.0,
+      "f1_score": 0.9231,
+      "ap_50": 0.9918,
+      "false_alarm_rate_per_frame": 0.5,
+      "mean_epistemic_conflict_k": 0.0103
+    },
+    {
+      "regime": "clear_day",
+      "modality": "LWIR-Only",
+      "precision": 0.5217,
+      "recall": 1.0,
+      "f1_score": 0.6857,
+      "ap_50": 0.9839,
+      "false_alarm_rate_per_frame": 2.75,
+      "mean_epistemic_conflict_k": 0.0103
+    },
+    {
+      "regime": "clear_day",
+      "modality": "RGB+LWIR-DS-Fusion",
+      "precision": 0.5143,
+      "recall": 1.0,
+      "f1_score": 0.6792,
+      "ap_50": 0.988,
+      "false_alarm_rate_per_frame": 2.8333,
+      "mean_epistemic_conflict_k": 0.0103
+    },
+    {
+      "regime": "urban_shadow",
+      "modality": "RGB-Only",
+      "precision": 0.1758,
+      "recall": 0.4444,
+      "f1_score": 0.252,
+      "ap_50": 0.2921,
+      "false_alarm_rate_per_frame": 6.25,
+      "mean_epistemic_conflict_k": 0.039
+    },
+    {
+      "regime": "urban_shadow",
+      "modality": "LWIR-Only",
+      "precision": 0.5224,
+      "recall": 0.9722,
+      "f1_score": 0.6796,
+      "ap_50": 0.9118,
+      "false_alarm_rate_per_frame": 2.6667,
+      "mean_epistemic_conflict_k": 0.039
+    },
+    {
+      "regime": "urban_shadow",
+      "modality": "RGB+LWIR-DS-Fusion",
+      "precision": 0.5556,
+      "recall": 0.9722,
+      "f1_score": 0.7071,
+      "ap_50": 0.7715,
+      "false_alarm_rate_per_frame": 2.3333,
+      "mean_epistemic_conflict_k": 0.039
+    },
+    {
+      "regime": "foliage_occlusion",
+      "modality": "RGB-Only",
+      "precision": 0.45,
+      "recall": 0.5,
+      "f1_score": 0.4737,
+      "ap_50": 0.3052,
+      "false_alarm_rate_per_frame": 1.8333,
+      "mean_epistemic_conflict_k": 0.016
+    },
+    {
+      "regime": "foliage_occlusion",
+      "modality": "LWIR-Only",
+      "precision": 0.4932,
+      "recall": 1.0,
+      "f1_score": 0.6606,
+      "ap_50": 0.6647,
+      "false_alarm_rate_per_frame": 3.0833,
+      "mean_epistemic_conflict_k": 0.016
+    },
+    {
+      "regime": "foliage_occlusion",
+      "modality": "RGB+LWIR-DS-Fusion",
+      "precision": 0.4932,
+      "recall": 1.0,
+      "f1_score": 0.6606,
+      "ap_50": 0.6397,
+      "false_alarm_rate_per_frame": 3.0833,
+      "mean_epistemic_conflict_k": 0.016
+    },
+    {
+      "regime": "night_blackout",
+      "modality": "RGB-Only",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "ap_50": 0.0,
+      "false_alarm_rate_per_frame": 0.0,
+      "mean_epistemic_conflict_k": 0.002
+    },
+    {
+      "regime": "night_blackout",
+      "modality": "LWIR-Only",
+      "precision": 0.5217,
+      "recall": 1.0,
+      "f1_score": 0.6857,
+      "ap_50": 0.9412,
+      "false_alarm_rate_per_frame": 2.75,
+      "mean_epistemic_conflict_k": 0.002
+    },
+    {
+      "regime": "night_blackout",
+      "modality": "RGB+LWIR-DS-Fusion",
+      "precision": 0.5217,
+      "recall": 1.0,
+      "f1_score": 0.6857,
+      "ap_50": 0.9238,
+      "false_alarm_rate_per_frame": 2.75,
+      "mean_epistemic_conflict_k": 0.002
+    },
+    {
+      "regime": "smoke_haze",
+      "modality": "RGB-Only",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "ap_50": 0.0,
+      "false_alarm_rate_per_frame": 0.0,
+      "mean_epistemic_conflict_k": 0.0043
+    },
+    {
+      "regime": "smoke_haze",
+      "modality": "LWIR-Only",
+      "precision": 0.5217,
+      "recall": 1.0,
+      "f1_score": 0.6857,
+      "ap_50": 0.9656,
+      "false_alarm_rate_per_frame": 2.75,
+      "mean_epistemic_conflict_k": 0.0043
+    },
+    {
+      "regime": "smoke_haze",
+      "modality": "RGB+LWIR-DS-Fusion",
+      "precision": 0.5294,
+      "recall": 1.0,
+      "f1_score": 0.6923,
+      "ap_50": 0.9031,
+      "false_alarm_rate_per_frame": 2.6667,
+      "mean_epistemic_conflict_k": 0.0043
+    }
+  ]
+}

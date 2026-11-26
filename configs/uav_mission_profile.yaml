@@ -1,0 +1,119 @@
+# AEGIS-0.5M Mission Profile & Complete Hardware Baseline Configuration
+# Compact Blended-Wing-Body (BWB) Autonomous Surveillance UAV
+# Target Cruise: Mach 0.50 (171.5 m/s) at 65 m AGL (20-floor building altitude)
+
+platform:
+  name: "AEGIS-0.5M"
+  architecture: "Blended-Wing-Body Micro-Turbojet Interceptor"
+  airframe_material: "Toray T800S / M40J Carbon-Fiber Monocoque Prepreg"
+  mass_kg: 14.5
+  empty_mass_kg: 7.4
+  payload_mass_kg: 3.3
+  fuel_mass_kg: 3.8
+  fuselage_length_m: 1.15
+  wing_span_m: 1.80
+  wing_area_m2: 0.48
+  mean_aerodynamic_chord_m: 0.28
+  aspect_ratio: 6.75
+  oswald_efficiency: 0.84
+  cd0_incompressible: 0.0185
+  cl_alpha_0_per_rad: 4.85
+  propulsive_efficiency: 0.78
+  critical_mach: 0.72
+
+propulsion:
+  engine_model: "220N-Class Micro-Turbojet (JetCat P220-RXi / PBS TJ20 Architecture)"
+  engine_type: "Single-spool radial compressor + annular combustor + axial turbine"
+  max_static_thrust_n: 220.0
+  engine_dry_mass_kg: 1.85
+  engine_diameter_mm: 112.0
+  engine_length_mm: 305.0
+  max_rpm: 118000
+  tsfc_kg_per_n_hr: 0.128
+  fuel_spec: "Jet-A1 / JP-8 + 5% AeroShell 500 Turbine Oil"
+  alternator_power_w: 500.0
+  backup_battery: "6S 22.2V 4500mAh Li-Ion Smart Avionics Buffer"
+  gimbal_motors: "T-Motor GBM5208H-200T Frameless Direct-Drive + 24-bit BiSS-C Encoders"
+  control_servos: "4x MKS HBL6625 HV Brushless Titanium-Gear (16.5 kg-cm @ 8.4V)"
+
+atmosphere:
+  model: "ISA Sea-Level Reference (a = 343.0 m/s)"
+  speed_of_sound_mps: 343.0
+  rho_sea_level_kg_m3: 1.225
+  dynamic_viscosity_pa_s: 1.81e-5
+  gravity_mps2: 9.80665
+  lapse_rate_k_per_m: 0.0065
+
+flight_envelope:
+  mach_min: 0.05
+  mach_max: 0.55
+  target_cruise_mach: 0.50
+  loiter_mach: 0.14
+  target_altitude_m: 65.0
+  building_floor_height_m: 3.25
+  nominal_off_nadir_deg: 0.0
+
+optics_rgb:
+  sensor_name: "Sony IMX183-CLK / Pregius Global-Shutter 1-inch CMOS (20 MP)"
+  sensor_width_mm: 13.2
+  sensor_height_mm: 8.8
+  width_px: 5472
+  height_px: 3648
+  focal_length_mm: 16.0
+  telephoto_focal_length_mm: 220.0
+  f_number: 2.8
+  telephoto_f_number: 4.0
+  exposure_time_s: 0.00025
+  telephoto_exposure_time_s: 0.00008
+  wavelength_um: 0.55
+  system_mtf: 0.70
+
+optics_lwir:
+  sensor_name: "FLIR Boson+ / Teledyne Uncooled VOx Microbolometer (8-14 um)"
+  sensor_width_mm: 7.68
+  sensor_height_mm: 6.144
+  width_px: 640
+  height_px: 512
+  focal_length_mm: 25.0
+  wavelength_min_um: 8.0
+  wavelength_max_um: 14.0
+  nedt_kelvin: 0.035
+
+gimbal_fmc:
+  axes: 2
+  imu_sensor: "KVH 1750 / ADIS16470 Tactical MEMS+FOG Hybrid"
+  servo_residual_fraction: 0.0045
+  imu_jitter_rad_s: 0.008
+  telephoto_servo_residual_fraction: 0.0006
+  telephoto_imu_jitter_rad_s: 0.0012
+  max_allowed_smear_px: 0.50
+
+target_human:
+  shoulder_width_m: 0.50
+  standing_height_m: 1.70
+  critical_dimension_m: 0.75
+
+target_micro_ant:
+  body_length_mm: 6.0
+  body_width_mm: 2.0
+  critical_dimension_m: 0.005
+
+johnson_criteria:
+  n50_detection: 1.0
+  n50_recognition: 4.0
+  n50_identification: 6.4
+
+thermal_fusion:
+  human_temp_min_k: 306.0
+  human_temp_max_k: 310.0
+  ambient_temp_min_k: 288.0
+  ambient_temp_max_k: 295.0
+  dempster_shafer_alpha_rgb: 0.94
+  dempster_shafer_alpha_lwir: 0.91
+
+behavioral_anomaly:
+  alert_threshold: 0.68
+  window_frames: 24
+  sample_rate_hz: 30.0
+  max_edge_latency_ms: 2.5
+  target_control_hz: 400.0

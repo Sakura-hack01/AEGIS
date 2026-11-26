@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# C++ / Build
+build/
+cmake-build-*/
+*.o
+*.obj
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+cpp_inference/uav_edge_pipeline
+cpp_inference/uav_edge_pipeline.exe
+cpp_inference/build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

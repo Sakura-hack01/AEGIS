@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEGIS-0.5M | Military-Grade Mach 0.5 Surveillance UAV Digital Twin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="mit-topbar">
+    <div class="topbar-inner">
+      <div class="brand-lockup">
+        <div class="mit-bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div>
+          <div class="brand-title">AEGIS-0.5M C4ISR Digital Twin</div>
+          <div class="brand-subtitle">MACH 0.50 AEROSPACE · DUAL EO/LWIR TELEPHOTO · C++23 EDGE KERNEL</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#simulator">Tactical Simulator</a>
+        <a href="#aircraft">Drone &amp; Motor Spec</a>
+        <a href="#equations">Physics &amp; AI Math</a>
+        <a href="#figures">300-DPI Figures</a>
+        <a href="https://github.com/Sakura-hack01/AEGIS" target="_blank" rel="noopener">GitHub Repo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Aerospace, Sub-Millimeter Optics &amp; Multi-Spectral Autonomy</span>
+      <h1>AEGIS-0.5M: High-Subsonic (Mach 0.5) Blended-Wing-Body Surveillance UAV with Sub-Centimeter Wide &amp; 0.71 mm/px Telephoto Precision</h1>
+      <p class="hero-lead">
+        Powered by a <strong>220 N micro-turbojet</strong> with co-axial <strong>16 mm wide (0.98 cm/px)</strong> and
+        <strong>220 mm telephoto (0.71 mm/px)</strong> EO/LWIR optics stabilized at <strong>151.2&deg;/s</strong>. Even at
+        20-story altitude (65 m AGL), the spotter channel resolves a <strong>6 mm ant across 8.4 &times; 2.8 px</strong>
+        while running Bayesian Dempster-Shafer thermal fusion and HMAC-SHA256 behavioral alerts in <strong>&lt; 0.2 ms</strong>.
+      </p>
+
+      <div class="kpi-strip">
+        <div class="kpi-card">
+          <div class="kpi-label">Micro-Turbojet Cruise</div>
+          <div class="kpi-value">Mach 0.50</div>
+          <div class="kpi-note">171.5 m/s · 220 N static thrust (16.5% margin)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Wide EO GSD @ 65 m</div>
+          <div class="kpi-value">0.98 cm/px</div>
+          <div class="kpi-note">51 &times; 173 px / human · 53.6 &times; 35.8 m swath</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">220 mm Micro-Inspect</div>
+          <div class="kpi-value">0.71 mm/px</div>
+          <div class="kpi-note">8.4 &times; 2.8 px on 6 mm ant from 20 floors up</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">2-Axis Gimbal FMC</div>
+          <div class="kpi-value">0.033 px</div>
+          <div class="kpi-note">151.2 deg/s slew · &lt; 0.50 px smear limit</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">C++23 Edge Pipeline</div>
+          <div class="kpi-value">0.068 ms p99</div>
+          <div class="kpi-note">&gt; 8,600 FPS (exceeds 400 Hz control loop)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="simulator" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Full-Theater Tactical Overflight &amp; 220 mm Micro-Zoom Simulator</h2>
+          <span class="section-tag">Click Any Target or Floor Micro-Marker to Lock Gimbal &amp; Telephoto Loupe</span>
+        </div>
+
+        <div id="theaterShell" class="theater-shell">
+          <div class="canvas-toolbar">
+            <div class="mode-group" role="group" aria-label="Sensor Modality">
+              <button class="btn" data-mode="rgb">RGB Wide (16 mm)</button>
+              <button class="btn" data-mode="lwir">LWIR 8&ndash;14 &mu;m</button>
+              <button class="btn active" data-mode="fused">DS Fused (RGB+LWIR)</button>
+              <button class="btn" data-mode="tele">220 mm Micro-Lock (0.71 mm/px)</button>
+            </div>
+            <div class="mode-group">
+              <button id="btnGimbal" class="btn active">Gimbal FMC: ACTIVE</button>
+              <button id="btnPlay" class="btn active">SIM: LIVE</button>
+              <button id="btnSpeed" class="btn">1.0&times; Speed</button>
+              <button id="btnAudio" class="btn">Audio Alerts: OFF</button>
+              <button id="btnPreset" class="btn">Preset: M0.50 @ 65m</button>
+              <button id="btnFullscreen" class="btn">Fullscreen Theater</button>
+            </div>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas id="twinCanvas"></canvas>
+          </div>
+
+          <div class="canvas-legend">
+            <span>CLICK MAP: Lock Gimbal onto Human, Vehicle, or 6 mm Courtyard Micro-Target ("Ant @ 20 Floors")</span>
+            <span>PiP Loupe (Bottom-Right): Live 220 mm Telephoto Sub-Millimeter Verification &middot; Crimson = DS Lock &middot; Bright Red = Threat Alert</span>
+          </div>
+        </div>
+
+        <div class="deck-grid">
+          <div class="panel-card">
+            <h3>Flight Envelope &amp; Tactical Scenarios</h3>
+            <div class="slider-row">
+              <div class="slider-label">
+                <span>Cruise Mach Number</span>
+                <span class="val" id="machVal">M 0.50 (171.5 m/s)</span>
+              </div>
+              <input id="machSlider" type="range" min="0.10" max="0.55" step="0.01" value="0.50" />
+            </div>
+
+            <div class="slider-row">
+              <div class="slider-label">
+                <span>Altitude AGL (H)</span>
+                <span class="val" id="altVal">65 m (~20 floors)</span>
+              </div>
+              <input id="altSlider" type="range" min="20" max="140" step="1" value="65" />
+            </div>
+
+            <div class="slider-row">
+              <div class="slider-label">
+                <span>Off-Nadir Gimbal Angle (&phi;)</span>
+                <span class="val" id="phiVal">0 deg</span>
+              </div>
+              <input id="phiSlider" type="range" min="0" max="35" step="1" value="0" />
+            </div>
+
+            <div class="slider-label" style="margin-top:8px;">
+              <span>Environment &amp; Threat Scenario</span>
+            </div>
+            <div class="scenario-grid">
+              <button class="btn-light active" data-scenario="foliage">Foliage Occlusion</button>
+              <button class="btn-light" data-scenario="night">Night Blackout</button>
+              <button class="btn-light" data-scenario="pursuit">Pursuit &amp; Distress</button>
+              <button class="btn-light" data-scenario="ant">Ant Micro-Inspect (6 mm)</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3>Live Military-Grade Telemetry &amp; Dempster-Shafer Mass</h3>
+            <div class="telemetry-grid">
+              <div class="tele-item">
+                <div class="tele-k">Compressible CD</div>
+                <div class="tele-v" id="teleCd">0.0214</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Thrust / Margin</div>
+                <div class="tele-v" id="teleThrust">183.7 N (16.5%)</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Jet-A1 Burn / Endur</div>
+                <div class="tele-v" id="teleFuel">23.5 kg/h · 9.7m</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Gimbal Slew Rate</div>
+                <div class="tele-v" id="teleGimbal">151.2 deg/s</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Wide / Tele Smear</div>
+                <div class="tele-v ok" id="teleSmear">0.033 / 0.020 px</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Wide / Tele GSD</div>
+                <div class="tele-v" id="teleGsd">0.98 cm / 0.71 mm</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Human Span (16mm)</div>
+                <div class="tele-v" id="teleHuman">51 &times; 173 px</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">6mm Ant (220mm)</div>
+                <div class="tele-v ok" id="teleAnt">8.4 &times; 2.8 px</div>
+              </div>
+              <div class="tele-item">
+                <div class="tele-k">Johnson P(ID)</div>
+                <div class="tele-v ok" id="telePid">99.97%</div>
+              </div>
+            </div>
+
+            <div class="ds-bars">
+              <div class="ds-bar-row">
+                <span>Belief m(Target)</span>
+                <div class="ds-track"><div id="dsBeliefBar" class="ds-fill" style="width:91%"></div></div>
+                <span id="dsBeliefVal">0.91</span>
+              </div>
+              <div class="ds-bar-row">
+                <span>Ignorance m(&Omega;)</span>
+                <div class="ds-track"><div id="dsUncertBar" class="ds-fill gray" style="width:6%"></div></div>
+                <span id="dsUncertVal">0.06</span>
+              </div>
+              <div class="ds-bar-row">
+                <span>Conflict K</span>
+                <div class="ds-track"><div id="dsConflictBar" class="ds-fill alert" style="width:8%"></div></div>
+                <span id="dsConflictVal">0.08</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3>Authenticated HMAC-SHA256 Alert Dispatch</h3>
+            <div id="alertFeed" class="alert-feed">
+              <div class="alert-entry">Initializing C4ISR corridor track buffer...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="aircraft" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>AEGIS-0.5M Airframe, Visual Renders &amp; Full Propulsion/Hardware Specification</h2>
+          <span class="section-tag">1.80 m Carbon BWB · 220 N Micro-Turbojet · Dual EO/LWIR Gimbal</span>
+        </div>
+
+        <div class="vehicle-gallery">
+          <figure class="vehicle-card">
+            <img src="assets/aegis_uav_render.png" alt="AEGIS-0.5M Blended-Wing-Body UAV 3/4 Flight Render" />
+            <figcaption class="cap">
+              <strong>3/4 Tactical Flight Profile</strong>
+              Matte Toray T800S carbon-fiber blended-wing-body airframe (1.80 m span) with dorsal flush NACA jet intake,
+              220 N micro-turbojet exhaust, nose pitot-static boom, and under-nose 2-axis EO/IR turret.
+            </figcaption>
+          </figure>
+
+          <figure class="vehicle-card">
+            <img src="assets/aegis_uav_cutaway.png" alt="AEGIS-0.5M Internal Subsystem Cutaway Diagram" />
+            <figcaption class="cap">
+              <strong>Internal Subsystem Cutaway</strong>
+              Reveals rear 112 mm micro-turbojet turbine, twin wing-root conformal Jet-A1 fuel bladders (3.8 kg),
+              liquid-cooled NVIDIA Jetson Orin NX AI bay, CubePilot controller, elevon servos, and direct-drive gimbal motors.
+            </figcaption>
+          </figure>
+
+          <figure class="vehicle-card">
+            <img src="assets/aegis_uav_blueprint.png" alt="AEGIS-0.5M 3-View Engineering Blueprint" />
+            <figcaption class="cap">
+              <strong>Orthographic 3-View CAD Blueprint</strong>
+              1.80 m wingspan &times; 1.15 m fuselage length, S = 0.48 m&sup2;, AR = 6.75, 14.5 kg MTOW with upturned
+              wingtip stabilizers and conformal belly optical dome.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="bom-table-wrap">
+          <table class="bom-table">
+            <thead>
+              <tr>
+                <th>Subsystem</th>
+                <th>Selected Military/Aerospace Component</th>
+                <th>Key Engineering Specs &amp; Role</th>
+                <th>Mass / Power</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Main Propulsion Engine</strong></td>
+                <td><code>220 N Micro-Turbojet</code><br />(JetCat P220-RXi / PBS TJ20 class)</td>
+                <td>Single-spool radial compressor + annular combustor; burns Jet-A1 / JP-8 + 5% turbine oil; TSFC = 0.128 kg/(N&middot;h). Chosen because propellers stall above ~120 m/s and LiPo batteries cannot sustain 40.4 kW continuous shaft power at Mach 0.50 (183.7 N required thrust, leaving 16.5% dash margin; 125 min loiter @ M=0.14).</td>
+                <td>1.85 kg dry<br />+ 3.8 kg Jet-A1<br />(500 W gen)</td>
+              </tr>
+              <tr>
+                <td><strong>2-Axis Gimbal Motors</strong></td>
+                <td><code>2&times; T-Motor GBM5208H-200T</code><br />+ 24-bit BiSS-C Encoders</td>
+                <td>Frameless pancake direct-drive brushless torque motors with zero backlash, coupled to KVH 1750 / ADIS16470 hybrid IMU for 151.2&deg;/s pitch FMC tracking (&lt; 0.033 px smear) + piezo fast-steering mirror for 220 mm telephoto (&lt; 0.020 px smear).</td>
+                <td>0.48 kg<br />18&ndash;45 W peak</td>
+              </tr>
+              <tr>
+                <td><strong>Flight Control Servos</strong></td>
+                <td><code>4&times; MKS HBL6625 HV</code><br />Coreless Brushless</td>
+                <td>Titanium-gear high-voltage digital servos (16.5 kg&middot;cm @ 8.4 V) driving dual split elevons and ruddervons against 17.9 kPa dynamic pressure at Mach 0.50.</td>
+                <td>0.26 kg total<br />8.4 V bus</td>
+              </tr>
+              <tr>
+                <td><strong>Wide + Telephoto EO</strong></td>
+                <td><code>Sony IMX183 Global CMOS</code><br />16 mm f/2.8 + 220 mm f/4.0</td>
+                <td>13.2 &times; 8.8 mm (5472 &times; 3648 px, 2.41 &mu;m pitch). Wide 16 mm gives 0.98 cm/px (51&times;173 px/human @ 65 m); co-axial 220 mm spotter achieves <strong>0.71 mm/px</strong> (8.4&times;2.8 px across a 6 mm ant from 20 floors up).</td>
+                <td>0.72 kg turret<br />250 &mu;s / 80 &mu;s</td>
+              </tr>
+              <tr>
+                <td><strong>Thermal LWIR Core</strong></td>
+                <td><code>FLIR Boson+ VOx 640&times;512</code><br />25 mm Germanium f/1.0</td>
+                <td>8&ndash;14 &mu;m radiometric thermal microbolometer (35 mK NETD, 3.12 cm/px @ 65 m) penetrating darkness, foliage pores, shadows, and smoke haze to resolve 306&ndash;310 K human signatures.</td>
+                <td>0.18 kg<br />1.2 W</td>
+              </tr>
+              <tr>
+                <td><strong>Edge AI &amp; Flight Control</strong></td>
+                <td><code>NVIDIA Jetson Orin NX 16GB</code><br />+ CubePilot Cube Orange+</td>
+                <td>100 TOPS INT8 AI module running PyTorch RGB-LWIR Cross-Modal Attention &amp; C++23 real-time kernel (&lt; 0.2 ms latency, &gt; 8,600 FPS), triple-redundant flight IMU, u-blox ZED-F9P RTK-GNSS, and AES-256/HMAC-SHA256 Ku-band link.</td>
+                <td>0.64 kg<br />25 W (from gen)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="equations" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Core Mathematical &amp; Systems Architecture</h2>
+          <span class="section-tag">Verified Analytical &amp; Numerical Models</span>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-card">
+            <h3>1. Prandtl-Glauert Aerodynamics &amp; Fuel Range</h3>
+            <div class="formula-box">
+              &beta; = &radic;(1 &minus; M&sup2;) = 0.8660<br />
+              C<sub>D</sub>(M, C<sub>L</sub>) = C<sub>D0</sub> / &radic;(1 &minus; M&sup2;) + k C<sub>L</sub>&sup2;<br />
+              m&#775;<sub>fuel</sub> = TSFC &middot; T<sub>req</sub> = 23.51 kg/h @ M 0.50
+            </div>
+            <p>
+              At M = 0.50 (171.5 m/s) and H = 65 m, T<sub>req</sub> = 183.7 N (16.5% turbojet margin) with 99.8 km sprint
+              range; throttling to M = 0.14 yields ~125 min (360 km) persistent patrol endurance.
+            </p>
+          </div>
+
+          <div class="spec-card">
+            <h3>2. Wide (0.98 cm/px) + Telephoto (0.71 mm/px) GSD</h3>
+            <div class="formula-box">
+              GSD<sub>wide</sub> = (65 m &times; 13.2 mm) / (16 mm &times; 5472) = 0.98 cm/px<br />
+              GSD<sub>tele</sub> = (65 m &times; 13.2 mm) / (220 mm &times; 5472) = 0.713 mm/px
+            </div>
+            <p>
+              Wide channel captures 51 &times; 173 px per human (99.97% Johnson P(ID)); co-axial 220 mm telephoto channel
+              resolves a 6 mm floor micro-target across 8.4 &times; 2.8 px from 20 stories high.
+            </p>
+          </div>
+
+          <div class="spec-card">
+            <h3>3. Bayesian Dempster-Shafer RGB-LWIR Fusion</h3>
+            <div class="formula-box">
+              m<sub>1&oplus;2</sub>(A) = (1 / (1 &minus; K)) &Sigma;<sub>B&cap;C=A</sub> m<sub>1</sub>(B) m<sub>2</sub>(C)<br />
+              K = m<sub>1</sub>(T)m<sub>2</sub>(B) + m<sub>1</sub>(B)m<sub>2</sub>(T)
+            </div>
+            <p>
+              Achieves 100% recall in clear day, foliage occlusion, night blackout, and smoke/haze while leveraging RGB
+              compactness priors to suppress non-human vehicle thermal clutter.
+            </p>
+          </div>
+
+          <div class="spec-card">
+            <h3>4. C++23 Sub-2.5 ms Behavioral Edge Kernel</h3>
+            <div class="formula-box">
+              Deadline &lt; 2.50 ms (&gt; 400 FPS)<br />
+              Measured p99 = 0.068&ndash;0.186 ms (&gt; 8,600 FPS)
+            </div>
+            <p>
+              Zero-dependency C++23 pipeline executes gimbal feedforward, 64&times;64 Dempster-Shafer fusion, and 16-track
+              pursuit/loitering/distress detection with 13&times;&ndash;36&times; deadline headroom.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="figures" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Publication-Grade 300-DPI Simulation Figures</h2>
+          <span class="section-tag">Generated by visualization/plot_figures.py</span>
+        </div>
+
+        <div class="figures-grid">
+          <figure class="figure-card">
+            <img src="assets/fig1_mach05_aerodynamics_gimbal.png" alt="Figure 1: Mach 0.5 Aerodynamics and Gimbal Stabilization" />
+            <figcaption class="figure-caption">
+              <strong>Figure 1.</strong> Prandtl-Glauert compressible drag polar, thrust required, and 2-axis active
+              gimbal smear suppression across Mach 0.05&ndash;0.55.
+            </figcaption>
+          </figure>
+
+          <figure class="figure-card">
+            <img src="assets/fig2_altitude_gsd_johnson.png" alt="Figure 2: Altitude vs GSD and Johnson Criteria" />
+            <figcaption class="figure-caption">
+              <strong>Figure 2.</strong> Nadir and oblique Ground Sample Distance (cm/px) and Johnson Criteria
+              detection/recognition/identification curves highlighting the 65 m (20-floor) 0.98 cm/px sweet spot.
+            </figcaption>
+          </figure>
+
+          <figure class="figure-card">
+            <img src="assets/fig3_rgb_lwir_fusion_benchmark.png" alt="Figure 3: RGB-LWIR Thermal Sensor Fusion Benchmark" />
+            <figcaption class="figure-caption">
+              <strong>Figure 3.</strong> Paired RGB + LWIR (8&ndash;14 &mu;m) triptych under foliage occlusion and
+              cross-regime recall comparison against single-modality baselines.
+            </figcaption>
+          </figure>
+
+          <figure class="figure-card">
+            <img src="assets/fig4_behavioral_anomaly_latency.png" alt="Figure 4: Behavioral Anomaly Timeline and C++23 Latency" />
+            <figcaption class="figure-caption">
+              <strong>Figure 4.</strong> Spatio-temporal behavioral anomaly alerts across a 60 s corridor sequence and
+              measured C++23 edge inference latency distribution vs. the 2.5 ms Mach 0.5 deadline.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mit-footer">
+    <div class="container footer-inner">
+      <div>AEGIS-0.5M &middot; Saket Dixit (Sakura-hack01) &middot; MIT License (<a href="https://github.com/Sakura-hack01/AEGIS" target="_blank" rel="noopener" style="color:#ffffff;">GitHub</a>)</div>
+      <div>Visual System: Official MIT Cardinal Red (#750014) &amp; Silver Gray (#8B959E)</div>
+    </div>
+  </footer>
+
+  <script src="sim.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+regime,modality,precision,recall,f1_score,ap_50,false_alarm_rate_per_frame,mean_epistemic_conflict_k
+clear_day,RGB-Only,0.8571,1.0,0.9231,0.9918,0.5,0.0103
+clear_day,LWIR-Only,0.5217,1.0,0.6857,0.9839,2.75,0.0103
+clear_day,RGB+LWIR-DS-Fusion,0.5143,1.0,0.6792,0.988,2.8333,0.0103
+urban_shadow,RGB-Only,0.1758,0.4444,0.252,0.2921,6.25,0.039
+urban_shadow,LWIR-Only,0.5224,0.9722,0.6796,0.9118,2.6667,0.039
+urban_shadow,RGB+LWIR-DS-Fusion,0.5556,0.9722,0.7071,0.7715,2.3333,0.039
+foliage_occlusion,RGB-Only,0.45,0.5,0.4737,0.3052,1.8333,0.016
+foliage_occlusion,LWIR-Only,0.4932,1.0,0.6606,0.6647,3.0833,0.016
+foliage_occlusion,RGB+LWIR-DS-Fusion,0.4932,1.0,0.6606,0.6397,3.0833,0.016
+night_blackout,RGB-Only,0.0,0.0,0.0,0.0,0.0,0.002
+night_blackout,LWIR-Only,0.5217,1.0,0.6857,0.9412,2.75,0.002
+night_blackout,RGB+LWIR-DS-Fusion,0.5217,1.0,0.6857,0.9238,2.75,0.002
+smoke_haze,RGB-Only,0.0,0.0,0.0,0.0,0.0,0.0043
+smoke_haze,LWIR-Only,0.5217,1.0,0.6857,0.9656,2.75,0.0043
+smoke_haze,RGB+LWIR-DS-Fusion,0.5294,1.0,0.6923,0.9031,2.6667,0.0043
