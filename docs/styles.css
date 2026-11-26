@@ -428,6 +428,71 @@ body {
   margin-right: 8px;
 }
 
+.live-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.proof-card {
+  background: #f8f9fa;
+  border: 1px solid var(--mit-border);
+  border-left: 4px solid var(--mit-red);
+  padding: 12px 14px;
+}
+
+.proof-title {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--mit-red);
+  margin-bottom: 4px;
+}
+
+.proof-eq {
+  font-family: var(--font-mono);
+  font-size: 0.80rem;
+  color: var(--mit-black);
+  background: #ffffff;
+  border: 1px solid #e2e6ea;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+}
+
+.proof-explain {
+  font-size: 0.82rem;
+  color: var(--mit-slate);
+  margin: 0;
+}
+
+.compare-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.compare-card {
+  background: #141619;
+  color: #e5e8ec;
+  border-top: 3px solid var(--mit-bright-red);
+  padding: 14px 16px;
+}
+
+.compare-card h4 {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  color: #ffffff;
+}
+
+.compare-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
 /* Telemetry Deck Below Big Canvas */
 .deck-grid {
   display: grid;
