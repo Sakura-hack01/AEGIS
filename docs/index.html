@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AEGIS-0.5M | New Delhi 500 m AGL Millimeter ISR & Aerospace Digital Twin</title>
+  <title>AEGIS-0.5M | Real 3D New Delhi Google-Earth Flight & 500 m Millimeter ISR Simulator</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -14,12 +15,12 @@
           <span></span><span></span><span></span>
         </div>
         <div>
-          <div class="brand-title">AEGIS-0.5M C4ISR Digital Twin</div>
-          <div class="brand-subtitle">NEW DELHI 500 m AGL MILLIMETER ISR · MACH 0.50 · 1200 mm CASSEGRAIN + PIEZO FSM</div>
+          <div class="brand-title">AEGIS-0.5M 3D New Delhi Digital Twin</div>
+          <div class="brand-subtitle">REAL-COORDINATE 3D DELHI EARTH · MACH 0.50 FLIGHT · 1200 mm CASSEGRAIN + PIEZO FSM</div>
         </div>
       </div>
       <nav class="nav-links">
-        <a href="#simulator">New Delhi Sim</a>
+        <a href="#simulator">3D Delhi Earth</a>
         <a href="#aircraft">Drone &amp; Sensors</a>
         <a href="#equations">Physics &amp; Optics</a>
         <a href="#figures">All 7 Figures</a>
@@ -30,41 +31,37 @@
 
   <section class="hero">
     <div class="container">
-      <span class="eyebrow">Academic Defense &amp; Aerospace Engineering Simulator · Central New Delhi Sector (4.0 &times; 2.5 km)</span>
-      <h1>AEGIS-0.5M: High-Subsonic (Mach 0.5) Blended-Wing-Body UAV with 0.77 mm/px Millimeter Precision from 500 m Altitude</h1>
+      <span class="eyebrow">3D Geospatial Aerospace &amp; Sub-Millimeter ISR Digital Twin · Real New Delhi, India (28.6139&deg;N, 77.2090&deg;E)</span>
+      <h1>AEGIS-0.5M: Live 3D New Delhi City Overflight &amp; 500 m Millimeter-Precision Surveillance Simulator</h1>
       <p class="hero-lead">
-        Operating over <strong>Central New Delhi</strong> (Connaught Place, Kartavya Path, India Gate, Lodhi Gardens, ITO Yamuna Bridge)
-        at <strong>500 m AGL</strong> (716 m MSL) and up to <strong>Mach 0.50 (171.5 m/s)</strong>. Combines a <strong>220 N micro-turbojet</strong>,
-        <strong>16 mm wide EO</strong>, <strong>FLIR Boson+ LWIR (8&ndash;14 &mu;m)</strong>, and a <strong>3-bounce 1200 mm folded Cassegrain
-        spotter ($D=150\text{ mm}$) + 2 kHz Piezo Fast-Steering Mirror</strong> achieving <strong>0.771 mm/px GSD</strong> and
-        <strong>2.24 mm Rayleigh diffraction resolution</strong>—resolving <strong>6 mm millimeter targets across 7.8 &times; 2.6 px</strong> from 500 m aloft.
+        Explore the entire real city of <strong>Delhi</strong> in interactive 3D (Satellite Aerial + OpenStreetMap 3D extruded buildings + terrain elevation + iconic 3D monuments) with the <strong>AEGIS-0.5M blended-wing-body jet UAV</strong> flying live overhead at up to <strong>Mach 0.50 (171.5 m/s)</strong> and <strong>500 m AGL</strong>. Click any road or landmark across Delhi to task the UAV, toggle <strong>LWIR 8&ndash;14 &mu;m thermal mode</strong>, or inspect millimeter-scale ground targets through the live <strong>1200 mm folded Cassegrain (0.771 mm/px)</strong> microscope reticle.
       </p>
 
       <div class="kpi-strip">
         <div class="kpi-card">
-          <div class="kpi-label">New Delhi Cruise Envelope</div>
+          <div class="kpi-label">Real-World Theater</div>
+          <div class="kpi-value">Whole Delhi 3D</div>
+          <div class="kpi-note">Satellite + 3D Extruded OSM Buildings + DEM Terrain</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Micro-Turbojet Cruise</div>
           <div class="kpi-value">Mach 0.50</div>
-          <div class="kpi-note">171.5 m/s · 220 N Turbojet (16.5–20.7% margin)</div>
+          <div class="kpi-note">171.5 m/s · 220 N Jet (20.7% margin @ 716 m MSL)</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">500 m Cassegrain Spotter</div>
           <div class="kpi-value">0.771 mm/px</div>
-          <div class="kpi-note">f = 1200 mm (D = 150 mm) · 7.8 px across 6 mm bolt</div>
+          <div class="kpi-note">f=1200 mm (D=150 mm) · 2.24 mm Rayleigh limit</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Rayleigh Diffraction @ 500 m</div>
-          <div class="kpi-value">2.24 mm</div>
-          <div class="kpi-note">1.22&lambda;H/D physics limit · 1.54 &mu;rad iFOV/px</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">2-Stage Coarse + Piezo FSM</div>
+          <div class="kpi-label">Coarse + 2 kHz Piezo FSM</div>
           <div class="kpi-value">0.053 px</div>
-          <div class="kpi-note">Suppresses 10.01 px smear @ 500 m &amp; M0.50</div>
+          <div class="kpi-note">Suppresses 10.01 px smear @ 500 m &amp; Mach 0.50</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">C++23 Real-Time Edge Loop</div>
-          <div class="kpi-value">0.049 ms p99</div>
-          <div class="kpi-note">&gt; 23,000 FPS (51&times; faster than 2.5 ms budget)</div>
+          <div class="kpi-value">0.051 ms mean</div>
+          <div class="kpi-note">19,610 FPS (51&times; faster than 2.5 ms budget)</div>
         </div>
       </div>
     </div>
@@ -74,33 +71,53 @@
     <section id="simulator" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>New Delhi 4.0 km &times; 2.5 km Tactical Digital Twin (500 m AGL Millimeter ISR)</h2>
-          <span class="section-tag">Click Any Landmark, Pedestrian, or Millimeter Target to Lock 1200 mm Folded Cassegrain</span>
+          <h2>Interactive 3D New Delhi Earth &amp; Live AEGIS-0.5M Flight Simulator</h2>
+          <span class="section-tag">Drag/Right-Drag to Orbit &amp; Tilt 3D City · Click Anywhere on Delhi Streets to Fly Drone There</span>
         </div>
 
         <div id="theaterShell" class="theater-shell">
+          <!-- Primary Sensor & Camera Toolbar -->
           <div class="canvas-toolbar">
-            <div class="mode-group" role="group" aria-label="Sensor Modality">
-              <button class="btn" data-mode="rgb">16 mm Wide RGB</button>
-              <button class="btn" data-mode="lwir">LWIR 8&ndash;14 &mu;m</button>
-              <button class="btn active" data-mode="fused">DS Fused (RGB+LWIR)</button>
-              <button class="btn" data-mode="tele">1200 mm Cassegrain (0.77 mm/px)</button>
+            <div class="mode-group" role="group" aria-label="Earth Visual Mode">
+              <button class="btn active" data-mapmode="satellite">3D Satellite Earth</button>
+              <button class="btn" data-mapmode="vector">3D City Map</button>
+              <button class="btn" data-mapmode="lwir">LWIR 8&ndash;14 &mu;m Thermal</button>
+            </div>
+            <div class="mode-group" role="group" aria-label="Camera Perspective">
+              <button class="btn active" data-cam="free">Free 3D Earth Orbit</button>
+              <button class="btn" data-cam="chase">Chase Drone Cam</button>
+              <button class="btn" data-cam="gimbal">Gimbal Belly Cam</button>
             </div>
             <div class="mode-group">
-              <button id="btnGimbal" class="btn active">Coarse + Piezo FSM: ACTIVE</button>
-              <button id="btnPreset500" class="btn active">500 m AGL · Delhi ISR</button>
-              <button id="btnPreset65" class="btn">65 m AGL · 20F</button>
+              <button id="btnGimbal" class="btn active">Piezo FSM: ACTIVE</button>
+              <button id="btnScale" class="btn active">UAV Scale: 18&times; Vis</button>
               <button id="btnPlay" class="btn active">LIVE</button>
               <button id="btnSpeed" class="btn">1.0&times;</button>
               <button id="btnAudio" class="btn">Audio: OFF</button>
-              <button id="btnFullscreen" class="btn">Fullscreen</button>
+              <button id="btnFullscreen" class="btn">Fullscreen 3D</button>
             </div>
           </div>
 
+          <!-- Delhi Landmarks Quick-Fly Bar -->
+          <div class="landmark-bar">
+            <span class="landmark-title">FLY OVER DELHI:</span>
+            <button class="btn-chip active" data-landmark="indiagate">India Gate</button>
+            <button class="btn-chip" data-landmark="cp">Connaught Place</button>
+            <button class="btn-chip" data-landmark="rashtrapati">Rashtrapati Bhavan</button>
+            <button class="btn-chip" data-landmark="redfort">Red Fort &amp; Chandni Chowk</button>
+            <button class="btn-chip" data-landmark="lodhi">Lodhi Gardens</button>
+            <button class="btn-chip" data-landmark="lotus">Lotus Temple</button>
+            <button class="btn-chip" data-landmark="qutub">Qutub Minar</button>
+            <button class="btn-chip" data-landmark="akshardham">Akshardham &amp; Yamuna</button>
+            <button class="btn-chip" data-landmark="igi">IGI Airport Runway</button>
+            <button class="btn-chip" data-landmark="iitd">IIT Delhi</button>
+          </div>
+
+          <!-- Professor Briefing Bar -->
           <div class="tour-banner">
             <div id="tourText">
               <strong>Professor Briefing Stage 1/5:</strong>
-              AEGIS-0.5M cruising over Central New Delhi (Connaught Place &rarr; Kartavya Path &rarr; India Gate &rarr; Lodhi Gardens &rarr; Yamuna ITO) at 500 m AGL. Click any landmark or millimeter target on the map, or step through the briefing.
+              Live 3D Google-Earth-style view of Central New Delhi (India Gate &amp; Kartavya Path). AEGIS-0.5M cruises overhead at 500 m AGL, Mach 0.50 (171.5 m/s) with real 3D extruded buildings and terrain.
             </div>
             <div class="mode-group">
               <button id="btnTourPrev" class="btn">&larr; Prev Stage</button>
@@ -108,19 +125,23 @@
             </div>
           </div>
 
-          <div class="canvas-wrap">
-            <canvas id="twinCanvas"></canvas>
+          <!-- Massive 3D MapLibre + Three.js Viewport + Live HUD Overlays -->
+          <div class="canvas-wrap map3d-wrap">
+            <div id="map3d"></div>
+            <canvas id="hudOverlay"></canvas>
+            <canvas id="pipCanvas"></canvas>
           </div>
 
           <div class="canvas-legend">
-            <span>CITY MAP: Connaught Place Radial Ring · Kartavya Path · India Gate · Lodhi Gardens Canopy · ITO Yamuna Bridge · Barakhamba Towers</span>
-            <span>PiP Loupe (Bottom-Right): 1200 mm Folded Cassegrain Millimeter Microscope (D=150 mm, 0.771 mm/px @ 500 m)</span>
+            <span>CONTROLS: Left-Drag = Pan · Right-Drag / Ctrl+Drag = Tilt 3D &amp; Rotate · Scroll = Zoom · Click Street = Task Drone Waypoint</span>
+            <span>Bottom-Right PiP: 1200 mm Folded Cassegrain Millimeter Microscope (0.771 mm/px @ 500 m AGL)</span>
           </div>
         </div>
 
+        <!-- Telemetry & Flight Envelope Deck -->
         <div class="deck-grid">
           <div class="panel-card">
-            <h3>Flight Controls &amp; Delhi Scenarios</h3>
+            <h3>Flight Envelope &amp; Altitude Controls</h3>
             <div class="slider-row">
               <div class="slider-label">
                 <span>Cruise Mach Number</span>
@@ -131,34 +152,38 @@
 
             <div class="slider-row">
               <div class="slider-label">
-                <span>Altitude AGL (H over Delhi 216 m MSL)</span>
+                <span>Altitude AGL (Over Delhi 216 m MSL)</span>
                 <span class="val" id="altVal">500 m AGL (716 m MSL)</span>
               </div>
-              <input id="altSlider" type="range" min="50" max="600" step="5" value="500" />
+              <input id="altSlider" type="range" min="65" max="600" step="5" value="500" />
             </div>
 
             <div class="slider-row">
               <div class="slider-label">
-                <span>Off-Nadir Gimbal Angle (&phi;)</span>
-                <span class="val" id="phiVal">0 deg</span>
+                <span>Orbit Radius Over Target</span>
+                <span class="val" id="orbitVal">380 m</span>
               </div>
-              <input id="phiSlider" type="range" min="0" max="35" step="1" value="0" />
+              <input id="orbitSlider" type="range" min="150" max="950" step="10" value="380" />
             </div>
 
             <div class="slider-label" style="margin-top:8px;">
-              <span>New Delhi Operational Scenarios</span>
+              <span>Altitude &amp; Inspection Presets</span>
             </div>
             <div class="scenario-grid">
-              <button class="btn-light active" data-scenario="mm500">500 m mm-FOD Lock (India Gate)</button>
-              <button class="btn-light" data-scenario="foliage">Lodhi Canopy Occlusion</button>
-              <button class="btn-light" data-scenario="pursuit">Kartavya Path Pursuit Alert</button>
-              <button class="btn-light" data-scenario="night">Delhi Night Blackout (LWIR)</button>
+              <button class="btn-light active" data-preset="delhi500">500 m AGL · mm ISR</button>
+              <button class="btn-light" data-preset="corridor65">65 m AGL · 20-Floor</button>
+              <button class="btn-light" data-preset="loiter14">M0.14 Loiter Patrol</button>
+              <button class="btn-light" data-preset="pursuit">Pursuit Threat Alert</button>
             </div>
           </div>
 
           <div class="panel-card">
-            <h3>Live Physics, Cassegrain Optics &amp; Dempster-Shafer Mass</h3>
+            <h3>Live Physics, 500 m Cassegrain &amp; Dempster-Shafer Mass</h3>
             <div class="telemetry-grid">
+              <div class="tele-item">
+                <div class="tele-k">GPS Position</div>
+                <div class="tele-v" id="teleGps">28.6129&deg;N, 77.2295&deg;E</div>
+              </div>
               <div class="tele-item">
                 <div class="tele-k">Compressible CD / q</div>
                 <div class="tele-v" id="teleCd">0.0214 · 17.0 kPa</div>
@@ -184,12 +209,8 @@
                 <div class="tele-v" id="teleRayleigh">2.24 mm</div>
               </div>
               <div class="tele-item">
-                <div class="tele-k">6 mm Target Span</div>
-                <div class="tele-v ok" id="teleAnt">7.8 &times; 2.6 px</div>
-              </div>
-              <div class="tele-item">
-                <div class="tele-k">Piezo FSM Smear</div>
-                <div class="tele-v ok" id="teleSmear">0.053 px</div>
+                <div class="tele-k">6 mm Target / Smear</div>
+                <div class="tele-v ok" id="teleSmear">7.8 px · 0.053 px</div>
               </div>
               <div class="tele-item">
                 <div class="tele-k">16 mm Wide GSD</div>
@@ -200,8 +221,8 @@
             <div class="ds-bars">
               <div class="ds-bar-row">
                 <span>Belief m(Target)</span>
-                <div class="ds-track"><div id="dsBeliefBar" class="ds-fill" style="width:94%"></div></div>
-                <span id="dsBeliefVal">0.94</span>
+                <div class="ds-track"><div id="dsBeliefBar" class="ds-fill" style="width:95%"></div></div>
+                <span id="dsBeliefVal">0.95</span>
               </div>
               <div class="ds-bar-row">
                 <span>Ignorance m(&Omega;)</span>
@@ -219,7 +240,7 @@
           <div class="panel-card">
             <h3>Authenticated HMAC-SHA256 Alert Dispatch</h3>
             <div id="alertFeed" class="alert-feed">
-              <div class="alert-entry">Initializing New Delhi 500 m sector track buffer...</div>
+              <div class="alert-entry">Initializing real-coordinate New Delhi 3D telemetry...</div>
             </div>
           </div>
         </div>
@@ -337,7 +358,7 @@
               T<sub>req</sub>(500m) = 174.4 N (20.7% jet margin)
             </div>
             <p>
-              At 500 m AGL over Delhi (716 m MSL, &rho; = 1.142 kg/m&sup3;), Mach 0.50 crosses the 4 km Central Vista sector in 23.6 s; throttling to M = 0.14 yields 125 min loiter patrol.
+              At 500 m AGL over Delhi (716 m MSL, &rho; = 1.142 kg/m&sup3;), Mach 0.50 crosses Central Delhi in seconds; throttling to M = 0.14 yields 125+ min loiter patrol.
             </p>
           </div>
 
@@ -366,8 +387,8 @@
           <div class="spec-card">
             <h3>4. C++23 Sub-2.5 ms Behavioral Edge Kernel</h3>
             <div class="formula-box">
-              Measured p99 = 0.049 ms (&gt; 23,000 FPS)<br />
-              51&times; Headroom Below 2.50 ms Deadline
+              Measured p99 = 0.091 ms (19,610 FPS)<br />
+              27&times;&ndash;51&times; Headroom Below 2.50 ms Deadline
             </div>
             <p>
               Zero-dependency C++23 loop executes gimbal feedforward, 64&times;64 Dempster-Shafer fusion, and 16-track pursuit/loitering/distress scoring.
@@ -430,7 +451,7 @@
           <figure class="figure-card">
             <img src="assets/fig4_behavioral_anomaly_latency.png" alt="Figure 4: Behavioral Anomaly Timeline and C++23 Latency" />
             <figcaption class="figure-caption">
-              <strong>Figure 4.</strong> Spatio-temporal behavioral anomaly alerts across a 60 s corridor sequence and measured C++23 edge inference latency (0.049 ms p99 vs. 2.50 ms budget).
+              <strong>Figure 4.</strong> Spatio-temporal behavioral anomaly alerts across a 60 s corridor sequence and measured C++23 edge inference latency vs. 2.50 ms budget.
             </figcaption>
           </figure>
         </div>
@@ -441,10 +462,12 @@
   <footer class="mit-footer">
     <div class="container footer-inner">
       <div>AEGIS-0.5M &middot; Saket Dixit (Sakura-hack01) &middot; MIT License (<a href="https://github.com/Sakura-hack01/AEGIS" target="_blank" rel="noopener" style="color:#ffffff;">GitHub</a>)</div>
-      <div>Visual System: Official MIT Cardinal Red (#750014) &amp; Silver Gray (#8B959E)</div>
+      <div>Visual System: Official MIT Cardinal Red (#750014) &amp; Silver Gray (#8B959E) · 3D Map: MapLibre GL + Esri Satellite + OpenFreeMap OSM 3D + Three.js</div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
   <script src="sim.js"></script>
 </body>
 </html>
