@@ -1,4 +1,4 @@
-name: AEGIS-0.5M CI
+name: AEGIS CI
 
 on:
   push:

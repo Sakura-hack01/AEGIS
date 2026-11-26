@@ -1,8 +1,9 @@
 name: Deploy GitHub Pages
 
+# GitHub Pages is deployed directly from main:/docs by GitHub's native
+# pages-build-deployment workflow. Keep manual dispatch available if switching
+# repository Settings -> Pages -> Source to "GitHub Actions".
 on:
-  push:
-    branches: [ main, master ]
   workflow_dispatch:
 
 permissions:
