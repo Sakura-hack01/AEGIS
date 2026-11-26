@@ -6,7 +6,9 @@
 [![C++23 Real-Time Kernel](https://img.shields.io/badge/C%2B%2B-23%20(%3C0.20ms%20p99)-750014.svg)](cpp_inference/uav_edge_pipeline.cpp)
 [![GitHub Pages Twin](https://img.shields.io/badge/GitHub%20Pages-Interactive%20Twin-8B959E.svg)](https://sakura-hack01.github.io/AEGIS/)
 
-**AEGIS-0.5M** is a reproducible aerospace, optical engineering, and multi-spectral computer vision digital twin investigating a compact blended-wing-body (BWB) autonomous surveillance UAV flying at **Mach 0.50 ($171.5\text{ m/s}$)** and **20-floor building altitude ($H = 65\text{ m}$ AGL)**. Equipped with a **220 N micro-turbojet engine**, dual **16 mm wide ($0.98\text{ cm/px}$)** + **220 mm co-axial telephoto ($0.713\text{ mm/px}$)** optics, an **8–14 $\mu$m LWIR thermal microbolometer**, and a **C++23 edge inference kernel ($<0.2\text{ ms}$)**, it resolves human posture across wide urban corridors—and even **6 mm micro-targets ("an ant on the floor") across $8.4 \times 2.8\text{ px}$ from 20 stories aloft**—while issuing authenticated behavioral threat alerts.
+**AEGIS-0.5M** is a reproducible aerospace, optical engineering, and multi-spectral computer vision digital twin investigating a compact blended-wing-body (BWB) autonomous surveillance UAV flying at **Mach 0.50 ($171.5\text{ m/s}$)** over **Central New Delhi** at **$500\text{ m}$ AGL** (and $65\text{ m}$ low-altitude corridor sweep). Equipped with a **220 N micro-turbojet engine**, **16 mm wide ($0.98\text{ cm/px}$ @ $65\text{ m}$)** + **1200 mm folded Maksutov-Cassegrain ($0.771\text{ mm/px}$ @ $500\text{ m}$ AGL)** optics, an **8–14 $\mu$m LWIR thermal microbolometer**, and a **C++23 edge inference kernel ($<0.05\text{ ms}$ p99)**, it resolves millimeter-scale features ($6\text{ mm}$ FOD/targets across $7.8 \times 2.6\text{ px}$) from $500\text{ m}$ aloft while issuing authenticated behavioral threat alerts.
+
+> **Deep Technical Monograph:** Read [`ENGINEERING_DOSSIER.md`](ENGINEERING_DOSSIER.md) for the complete station-by-station sensor/camera placement map ($x = -95$ to $+1150\text{ mm}$), 5-stage turbojet Brayton cycle breakdown, flight dynamics derivatives, and folded Cassegrain optical train analysis.
 
 ---
 
@@ -102,11 +104,15 @@ Tracks are evaluated across 24-frame ($30\text{ Hz}$) sliding windows for **Traj
 
 ## 5. Publication-Grade 300-DPI Figures
 
-| Figure 1: Mach 0.5 Aerodynamics & Gimbal | Figure 2: 20-Floor GSD & Johnson Criteria |
+| Figure 5: Fuselage Sensor Placement Map | Figure 6: 500 m Cassegrain Optical Train |
 | :---: | :---: |
-| ![Figure 1](figures/fig1_mach05_aerodynamics_gimbal.png) | ![Figure 2](figures/fig2_altitude_gsd_johnson.png) |
-| **Figure 3: RGB-LWIR Dempster-Shafer Fusion** | **Figure 4: Behavioral Alerts & C++23 Latency** |
-| ![Figure 3](figures/fig3_rgb_lwir_fusion_benchmark.png) | ![Figure 4](figures/fig4_behavioral_anomaly_latency.png) |
+| ![Figure 5](figures/fig5_sensor_placement_fuselage_map.png) | ![Figure 6](figures/fig6_optical_train_500m_mm.png) |
+| **Figure 7: New Delhi 500 m AGL ISR Sector** | **Figure 1: Mach 0.5 Aerodynamics & Gimbal** |
+| ![Figure 7](figures/fig7_delhi_500m_isr_simulation.png) | ![Figure 1](figures/fig1_mach05_aerodynamics_gimbal.png) |
+| **Figure 2: 20-Floor GSD & Johnson Criteria** | **Figure 3: RGB-LWIR Dempster-Shafer Fusion** |
+| ![Figure 2](figures/fig2_altitude_gsd_johnson.png) | ![Figure 3](figures/fig3_rgb_lwir_fusion_benchmark.png) |
+| **Figure 4: Behavioral Alerts & C++23 Latency** | |
+| ![Figure 4](figures/fig4_behavioral_anomaly_latency.png) | |
 
 ---
 

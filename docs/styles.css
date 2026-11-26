@@ -327,6 +327,27 @@ body {
   color: var(--mit-silver);
 }
 
+.tour-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: #1b1f27;
+  border-bottom: 1px solid #2f3642;
+  color: #f0f3f7;
+  font-size: 0.84rem;
+}
+
+.tour-banner strong {
+  color: #ff6b78;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+
 /* Telemetry Deck Below Big Canvas */
 .deck-grid {
   display: grid;

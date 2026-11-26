@@ -95,3 +95,24 @@ def test_gsd_20_floor_precision_and_johnson_criteria() -> None:
     assert math.isclose(res.telephoto_gsd_mm_px, 0.7127, abs_tol=0.01)
     assert res.telephoto_micro_length_px > 8.0
     assert res.telephoto_smear_px < 0.50
+
+
+def test_500m_cassegrain_mm_resolution_and_delhi_mission_phases() -> None:
+    optics = OpticalGSDModel()
+    c500 = optics.evaluate_500m_cassegrain_channel(altitude_m=500.0, off_nadir_deg=0.0, velocity_mps=171.5)
+
+    # At 500 m AGL, f=1200 mm D=150 mm folded Cassegrain achieves 0.771 mm/px GSD
+    assert math.isclose(c500.gsd_mm_px, 0.7708, abs_tol=0.01)
+    assert c500.rayleigh_diffraction_mm < 2.5
+    assert c500.target_6mm_length_px > 7.5
+    assert c500.uncompensated_smear_px > 9.0
+    assert c500.fsm_stabilized_smear_px < 0.15
+
+    aero = AerodynamicModel()
+    phases = aero.evaluate_delhi_mission_phases(delhi_ground_msl_m=216.0, patrol_agl_m=500.0)
+    assert len(phases) == 5
+    # Dash phase at M0.50 maintains positive thrust margin and 25%-balanced hinge moment < 16.5 kg*cm
+    dash = phases[3]
+    assert dash["mach"] == 0.50
+    assert dash["thrust_margin_pct"] > 15.0
+    assert dash["elevon_hinge_kgcm"] < 16.5

@@ -99,6 +99,34 @@ class GSDAnalysisResult:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class Cassegrain500mResult:
+    """500 m AGL Folded Maksutov-Cassegrain + Piezo FSM millimeter-scale optical analysis."""
+
+    altitude_m: float
+    off_nadir_deg: float
+    slant_range_m: float
+    focal_length_mm: float
+    aperture_diameter_mm: float
+    f_number: float
+    pixel_pitch_um: float
+    gsd_mm_px: float
+    ifov_urad: float
+    rayleigh_diffraction_mm: float
+    airy_disk_ground_mm: float
+    airy_disk_px: float
+    target_6mm_length_px: float
+    target_2mm_width_px: float
+    coarse_gimbal_rate_deg_s: float
+    uncompensated_smear_px: float
+    fsm_stabilized_smear_px: float
+    swath_width_m: float
+    swath_height_m: float
+
+    def to_dict(self) -> dict[str, float]:
+        return asdict(self)
+
+
 def load_optics_config_from_yaml(config_path: str | Path) -> OpticsConfig:
     """Load optical and Johnson criteria parameters from mission YAML."""
     with Path(config_path).open("r", encoding="utf-8") as handle:
@@ -293,3 +321,69 @@ class OpticalGSDModel:
             )
             for alt in altitudes_m
         ]
+
+    @staticmethod
+    def evaluate_500m_cassegrain_channel(
+        altitude_m: float = 500.0,
+        off_nadir_deg: float = 0.0,
+        velocity_mps: float = 171.5,
+        focal_length_mm: float = 1200.0,
+        aperture_diameter_mm: float = 150.0,
+        pixel_pitch_um: float = 1.85,
+        sensor_width_px: int = 4152,
+        sensor_height_px: int = 2336,
+        wavelength_um: float = 0.55,
+        exposure_time_s: float = 4.5e-5,
+        fsm_residual_rate_rad_s: float = 0.0018,
+    ) -> Cassegrain500mResult:
+        """Evaluate 3rd-stage folded Cassegrain optics for mm-scale inspection at 500 m AGL."""
+        phi = math.radians(off_nadir_deg)
+        cos_phi = math.cos(phi)
+        slant_range_m = altitude_m / max(cos_phi, 0.05)
+        f_number = focal_length_mm / aperture_diameter_mm
+
+        # Geometric GSD in mm/px: (R * p_um * 1e-6) / (f_mm * 1e-3) * 1e3 = (R * p_um) / f_mm
+        gsd_mm = (slant_range_m * pixel_pitch_um) / focal_length_mm
+        gsd_effective_oblique_mm = gsd_mm / math.sqrt(max(cos_phi, 0.05))
+        ifov_urad = (pixel_pitch_um / focal_length_mm) * 1000.0
+
+        # Rayleigh diffraction criterion (1.22 * lambda * R / D)
+        rayleigh_mm = 1.22 * (wavelength_um * 1e-6) * slant_range_m / (aperture_diameter_mm * 1e-3) * 1000.0
+        airy_ground_mm = 2.0 * rayleigh_mm
+        airy_px = airy_ground_mm / gsd_effective_oblique_mm
+
+        # Millimeter-scale target (6 mm x 2 mm micro-bolt / ant / FOD reference)
+        len_px = 6.0 / gsd_effective_oblique_mm
+        wid_px = 2.0 / gsd_effective_oblique_mm
+
+        # Coarse gimbal slew rate + 2-stage Piezo FSM smear suppression
+        coarse_rate_rad_s = (velocity_mps * cos_phi * cos_phi) / altitude_m
+        uncomp_mm = velocity_mps * exposure_time_s * 1000.0
+        uncomp_px = uncomp_mm / gsd_effective_oblique_mm
+        fsm_ground_mm = ((altitude_m * fsm_residual_rate_rad_s * exposure_time_s) / (cos_phi * cos_phi)) * 1000.0
+        fsm_smear_px = fsm_ground_mm / gsd_effective_oblique_mm
+
+        swath_w_m = (gsd_effective_oblique_mm / 1000.0) * sensor_width_px
+        swath_h_m = (gsd_effective_oblique_mm / 1000.0) * sensor_height_px
+
+        return Cassegrain500mResult(
+            altitude_m=altitude_m,
+            off_nadir_deg=off_nadir_deg,
+            slant_range_m=slant_range_m,
+            focal_length_mm=focal_length_mm,
+            aperture_diameter_mm=aperture_diameter_mm,
+            f_number=f_number,
+            pixel_pitch_um=pixel_pitch_um,
+            gsd_mm_px=gsd_effective_oblique_mm,
+            ifov_urad=ifov_urad,
+            rayleigh_diffraction_mm=rayleigh_mm,
+            airy_disk_ground_mm=airy_ground_mm,
+            airy_disk_px=airy_px,
+            target_6mm_length_px=len_px,
+            target_2mm_width_px=wid_px,
+            coarse_gimbal_rate_deg_s=math.degrees(coarse_rate_rad_s),
+            uncompensated_smear_px=uncomp_px,
+            fsm_stabilized_smear_px=fsm_smear_px,
+            swath_width_m=swath_w_m,
+            swath_height_m=swath_h_m,
+        )

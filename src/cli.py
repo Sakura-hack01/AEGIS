@@ -27,6 +27,7 @@ def cmd_sim() -> int:
     from simulations.sim2_altitude_gsd_precision import run_sim2
     from simulations.sim3_rgb_lwir_occlusion import run_sim3
     from simulations.sim4_urban_safety_alerts import run_sim4
+    from simulations.sim5_delhi_500m_city import run_sim5
 
     s1 = run_sim1(REPO_ROOT / "configs/uav_mission_profile.yaml", REPO_ROOT / "results")
     c = s1["cruise_mach_050"]
@@ -58,6 +59,15 @@ def cmd_sim() -> int:
     print(
         f"[Sim4] Corridor FAR={s4['false_alarm_rate_normal_frames']:.4f} | "
         f"First Alerts={s4['first_alert_timestamps_s']}"
+    )
+
+    s5 = run_sim5(REPO_ROOT / "configs/uav_mission_profile.yaml", REPO_ROOT / "results")
+    c5 = s5["cassegrain_500m_nadir"]
+    print(
+        f"[Sim5] Delhi 500m AGL | GSD={c5['gsd_mm_px']:.3f} mm/px | "
+        f"Rayleigh={c5['rayleigh_diffraction_mm']:.2f} mm | "
+        f"6mm Target={c5['target_6mm_length_px']:.2f} px | "
+        f"FSM Smear={c5['fsm_stabilized_smear_px']:.3f} px"
     )
     return 0
 

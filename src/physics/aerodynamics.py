@@ -307,3 +307,73 @@ class AerodynamicModel:
             )
             for m in mach_values
         ]
+
+    def evaluate_servo_hinge_moment_kgcm(
+        self,
+        dynamic_pressure_pa: float,
+        elevon_chord_m: float = 0.055,
+        elevon_span_m: float = 0.24,
+        max_deflection_deg: float = 6.0,
+        inset_balance_factor: float = 0.30,
+    ) -> float:
+        """Estimate split-elevon aerodynamic hinge moment (kg*cm) with 25% inset hinge balance."""
+        area = elevon_chord_m * elevon_span_m
+        # Unbalanced Ch ~ 0.045/deg * delta_deg, reduced by 25%-chord aerodynamic hinge balance
+        ch_effective = 0.045 * max_deflection_deg * inset_balance_factor
+        moment_nm = dynamic_pressure_pa * area * elevon_chord_m * ch_effective
+        # Convert N*m to kg*cm: 1 N*m = 10.19716 kg*cm
+        return moment_nm * 10.19716
+
+    def evaluate_delhi_mission_phases(
+        self,
+        delhi_ground_msl_m: float = 216.0,
+        patrol_agl_m: float = 500.0,
+    ) -> list[dict[str, float | str]]:
+        """Compute 5-stage flight dynamics & propulsion telemetry over New Delhi (216m MSL)."""
+        cruise_alt_msl = delhi_ground_msl_m + patrol_agl_m
+        phases = [
+            ("1. Pneumatic Rail Launch", 0.095, 5.0, 0.0),
+            ("2. Climb to 500m AGL", 0.25, 250.0, 12.0),
+            ("3. Delhi Loiter Patrol (M0.14)", 0.14, patrol_agl_m, 0.0),
+            ("4. Mach 0.50 Dash Over Delhi", 0.50, patrol_agl_m, 15.0),
+            ("5. Glide & Recovery Approach", 0.12, 80.0, 0.0),
+        ]
+        results = []
+        for name, mach, agl, phi_deg in phases:
+            st = self.evaluate_flight_state(
+                mach=mach,
+                altitude_m=agl,
+                off_nadir_deg=phi_deg,
+                gsd_m_per_px=0.000771 if agl >= 400.0 else 0.0098,
+                exposure_time_s=4.5e-5 if agl >= 400.0 else 2.5e-4,
+                servo_residual_fraction=0.0012 if agl >= 400.0 else 0.0045,
+                imu_jitter_rad_s=0.0015 if agl >= 400.0 else 0.008,
+                use_sea_level_reference_a=False,
+            )
+            rho_msl = self.air_density(delhi_ground_msl_m + agl)
+            # Speed-scheduled elevon deflection limit: 18 deg at launch/loiter, 6 deg at Mach 0.50
+            delta_limit = 6.0 if mach >= 0.40 else 14.0
+            hinge_kgcm = self.evaluate_servo_hinge_moment_kgcm(
+                st.dynamic_pressure_pa, max_deflection_deg=delta_limit
+            )
+            results.append(
+                {
+                    "phase": name,
+                    "mach": mach,
+                    "agl_m": agl,
+                    "msl_m": delhi_ground_msl_m + agl,
+                    "airspeed_mps": round(st.airspeed_mps, 2),
+                    "rho_msl_kg_m3": round(rho_msl, 4),
+                    "dynamic_pressure_kpa": round(st.dynamic_pressure_pa / 1000.0, 2),
+                    "cd_total": round(st.cd_total, 5),
+                    "lift_to_drag": round(st.lift_to_drag, 2),
+                    "thrust_required_n": round(st.thrust_required_n, 2),
+                    "thrust_margin_pct": round(st.thrust_margin_pct, 2),
+                    "fuel_burn_kg_hr": round(st.fuel_burn_kg_per_hr, 2),
+                    "endurance_min": round(st.endurance_min, 1),
+                    "gimbal_rate_deg_s": round(st.gimbal_angular_rate_deg_s, 2),
+                    "elevon_hinge_kgcm": round(hinge_kgcm, 2),
+                    "cruise_alt_msl_ref": cruise_alt_msl,
+                }
+            )
+        return results
