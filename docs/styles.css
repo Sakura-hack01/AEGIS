@@ -1,4 +1,4 @@
-/* AEGIS-0.5M Design System — Strictly Styled to Official MIT Brand Colors */
+/* AEGIS Design System — Visual Layout Stylesheet */
 :root {
   --mit-red: #750014;
   --mit-bright-red: #ff1423;
@@ -692,7 +692,9 @@ input[type="range"] {
 .vehicle-card img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 8px;
+  background: #ffffff;
   display: block;
   border-bottom: 1px solid var(--mit-border);
 }

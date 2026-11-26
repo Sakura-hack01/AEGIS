@@ -144,7 +144,7 @@ def plot_fig1_mach05_envelope(results_dir: Path, figures_dir: Path, docs_assets_
     ax2.legend(lines2, [l.get_label() for l in lines2], loc="upper left")
 
     fig.suptitle(
-        "AEGIS-0.5M High-Subsonic Aerodynamic Envelope & Gimbal Stabilization",
+        "AEGIS High-Subsonic Aerodynamic Envelope & Gimbal Stabilization",
         fontsize=13,
         fontweight="bold",
         color=MIT_DARK,
@@ -563,7 +563,7 @@ def plot_fig5_sensor_placement(figures_dir: Path, docs_assets_dir: Path) -> None
     ax_top.grid(True, color=MIT_GRID, lw=0.6)
 
     fig.suptitle(
-        "AEGIS-0.5M Airframe Packaging, Exact Sensor Placement & Propulsion Integration",
+        "AEGIS Airframe Packaging, Exact Sensor Placement & Propulsion Integration",
         fontsize=13, fontweight="bold", color=MIT_DARK, y=0.99,
     )
     plt.tight_layout()
@@ -704,7 +704,7 @@ def plot_fig7_delhi_500m_city(results_dir: Path, figures_dir: Path, docs_assets_
     traj = sim5["trajectory_sample"]
     tx = [p["x_m"] for p in traj]
     ty = [p["y_m"] for p in traj]
-    ax_city.plot(tx, ty, color=MIT_RED, lw=2.2, ls="-", label="AEGIS-0.5M Orbit (500 m AGL, M0.50)")
+    ax_city.plot(tx, ty, color=MIT_RED, lw=2.2, ls="-", label="AEGIS Orbit (500 m AGL, M0.50)")
     ax_city.scatter([tx[22]], [ty[22]], color=MIT_BRIGHT_RED, s=90, marker="^", zorder=6, label="UAV Live Position")
 
     # Landmarks & mm-targets
@@ -764,7 +764,7 @@ def plot_fig7_delhi_500m_city(results_dir: Path, figures_dir: Path, docs_assets_
     ax_miss.legend(loc="upper left", fontsize=7.6)
 
     fig.suptitle(
-        "AEGIS-0.5M New Delhi Operational Digital Twin (500 m AGL Millimeter ISR)",
+        "AEGIS New Delhi Operational Digital Twin (500 m AGL Millimeter ISR)",
         fontsize=13, fontweight="bold", color=MIT_DARK, y=0.99,
     )
     _save_fig(fig, figures_dir, docs_assets_dir, "fig7_delhi_500m_isr_simulation")

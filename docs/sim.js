@@ -1,5 +1,5 @@
 /**
- * AEGIS-0.5M Real 3D Google-Earth-Style New Delhi Simulator
+ * AEGIS Real 3D Google-Earth-Style New Delhi Simulator
  * Stack: MapLibre GL JS v4.7.1 (Esri Satellite + OpenFreeMap OSM 3D Buildings + Terrarium 3D DEM)
  *      + Three.js WebGL 3D Custom Layer (AEGIS BWB Jet UAV, Volumetric Gimbal Cone, 3D Delhi Landmarks)
  *      + Live HUD Overlay + 1200 mm Folded Cassegrain Millimeter Microscope Loupe
@@ -146,7 +146,7 @@
   const TOUR_STAGES = [
     {
       title: "Stage 1/5 — Whole 3D New Delhi (India Gate & Kartavya Path)",
-      desc: "Real Esri Satellite imagery + OpenStreetMap 3D extruded buildings + Terrarium DEM elevation. AEGIS-0.5M orbits at 500 m AGL & Mach 0.50 (171.5 m/s) with 220 N micro-turbojet.",
+      desc: "Real Esri Satellite imagery + OpenStreetMap 3D extruded buildings + Terrarium DEM elevation. AEGIS orbits at 500 m AGL & Mach 0.50 (171.5 m/s) with 220 N micro-turbojet.",
       landmark: "indiagate", mapMode: "satellite", camMode: "free", alt: 500, mach: 0.50, pursuit: false,
     },
     {
@@ -315,7 +315,7 @@
     playAlertTone();
   }
 
-  // --- Build Three.js 3D AEGIS-0.5M UAV & Volumetric Gimbal Cone ---
+  // --- Build Three.js 3D AEGIS UAV & Volumetric Gimbal Cone ---
   function createThreeUavGroup(THREE) {
     const root = new THREE.Group();
 
@@ -352,7 +352,7 @@
     const bodyMesh = new THREE.Mesh(wingGeo, carbonMat);
     root.add(bodyMesh);
 
-    // MIT Cardinal Red wing accent stripes
+    // Dorsal wing accent stripes
     const redMat = new THREE.MeshStandardMaterial({ color: 0x9b001c, roughness: 0.3, metalness: 0.3 });
     const stripeGeo = new THREE.BoxGeometry(0.68, 0.025, 0.07);
     const stripeL = new THREE.Mesh(stripeGeo, redMat);

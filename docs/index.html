@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AEGIS-0.5M | Real 3D New Delhi Google-Earth Flight & 500 m Millimeter ISR Simulator</title>
+  <title>AEGIS | Real 3D New Delhi Google-Earth Flight &amp; 500 m Millimeter ISR Simulator</title>
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -15,7 +15,7 @@
           <span></span><span></span><span></span>
         </div>
         <div>
-          <div class="brand-title">AEGIS-0.5M 3D New Delhi Digital Twin</div>
+          <div class="brand-title">AEGIS</div>
           <div class="brand-subtitle">REAL-COORDINATE 3D DELHI EARTH · MACH 0.50 FLIGHT · 1200 mm CASSEGRAIN + PIEZO FSM</div>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <a href="#simulator">3D Delhi Earth</a>
         <a href="#aircraft">Drone &amp; Sensors</a>
         <a href="#equations">Physics &amp; Optics</a>
-        <a href="#figures">All 7 Figures</a>
+        <a href="#figures">Simulation Plots</a>
         <a href="https://github.com/Sakura-hack01/AEGIS" target="_blank" rel="noopener">GitHub Repo</a>
       </nav>
     </div>
@@ -32,9 +32,9 @@
   <section class="hero">
     <div class="container">
       <span class="eyebrow">3D Geospatial Aerospace &amp; Sub-Millimeter ISR Digital Twin · Real New Delhi, India (28.6139&deg;N, 77.2090&deg;E)</span>
-      <h1>AEGIS-0.5M: Live 3D New Delhi City Overflight &amp; 500 m Millimeter-Precision Surveillance Simulator</h1>
+      <h1>AEGIS</h1>
       <p class="hero-lead">
-        Explore the entire real city of <strong>Delhi</strong> in interactive 3D (Satellite Aerial + OpenStreetMap 3D extruded buildings + terrain elevation + iconic 3D monuments) with the <strong>AEGIS-0.5M blended-wing-body jet UAV</strong> flying live overhead at up to <strong>Mach 0.50 (171.5 m/s)</strong> and <strong>500 m AGL</strong>. Click any road or landmark across Delhi to task the UAV, toggle <strong>LWIR 8&ndash;14 &mu;m thermal mode</strong>, or inspect millimeter-scale ground targets through the live <strong>1200 mm folded Cassegrain (0.771 mm/px)</strong> microscope reticle.
+        Explore the entire real city of <strong>Delhi</strong> in interactive 3D (Satellite Aerial + OpenStreetMap 3D extruded buildings + terrain elevation + iconic 3D monuments) with the <strong>AEGIS blended-wing-body jet UAV</strong> flying live overhead at up to <strong>Mach 0.50 (171.5 m/s)</strong> and <strong>500 m AGL</strong>. Click any road or landmark across Delhi to task the UAV, toggle <strong>LWIR 8&ndash;14 &mu;m thermal mode</strong>, or inspect millimeter-scale ground targets through the live <strong>1200 mm folded Cassegrain (0.771 mm/px)</strong> microscope reticle.
       </p>
 
       <div class="kpi-strip">
@@ -71,7 +71,7 @@
     <section id="simulator" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Interactive 3D New Delhi Earth &amp; Live AEGIS-0.5M Flight Simulator</h2>
+          <h2>Interactive 3D New Delhi Earth &amp; Live AEGIS Flight Simulator</h2>
           <span class="section-tag">Drag/Right-Drag to Orbit &amp; Tilt 3D City · Click Anywhere on Delhi Streets to Fly Drone There</span>
         </div>
 
@@ -117,7 +117,7 @@
           <div class="tour-banner">
             <div id="tourText">
               <strong>Professor Briefing Stage 1/5:</strong>
-              Live 3D Google-Earth-style view of Central New Delhi (India Gate &amp; Kartavya Path). AEGIS-0.5M cruises overhead at 500 m AGL, Mach 0.50 (171.5 m/s) with real 3D extruded buildings and terrain.
+              Live 3D Google-Earth-style view of Central New Delhi (India Gate &amp; Kartavya Path). AEGIS cruises overhead at 500 m AGL, Mach 0.50 (171.5 m/s) with real 3D extruded buildings and terrain.
             </div>
             <div class="mode-group">
               <button id="btnAutoDemo" class="btn btn-alert">&#9654; Auto Professor Tour</button>
@@ -291,29 +291,29 @@
 
         <div class="vehicle-gallery">
           <figure class="vehicle-card">
-            <img src="assets/aegis_uav_render.png" alt="AEGIS-0.5M Blended-Wing-Body UAV 3/4 Flight Render" />
+            <img src="assets/aegis_airframe_3view_drawing.png" alt="AEGIS Orthographic 3-View Line Drawing and Reflexed Airfoil Section" />
             <figcaption class="cap">
-              <strong>3/4 Tactical Flight Profile</strong>
-              Matte Toray T800S carbon-fiber blended-wing-body airframe (1.80 m span) with dorsal NACA S-duct intake,
-              220 N micro-turbojet exhaust, nose pitot-static probe, and under-nose 3-stage EO/LWIR turret.
+              <strong>Orthographic 3-View &amp; Airfoil Drawing</strong>
+              Monochrome engineering line drawing showing 1.80 m blended-wing-body planform, 1.15 m centerline fuselage,
+              swept carbon spar, split elevons, dorsal S-duct intake, unobstructed chin turret, and reflexed MH-60 airfoil.
             </figcaption>
           </figure>
 
           <figure class="vehicle-card">
-            <img src="assets/aegis_uav_cutaway.png" alt="AEGIS-0.5M Internal Subsystem Cutaway Diagram" />
+            <img src="assets/aegis_station_cutaway_drawing.png" alt="AEGIS Longitudinal Cross-Section and Component Station Map" />
             <figcaption class="cap">
-              <strong>Internal Subsystem Cutaway</strong>
-              Shows rear 112 mm micro-turbojet turbine, twin wing-root conformal Jet-A1 bladders (3.8 kg centered at CG),
-              liquid-cooled NVIDIA Jetson Orin NX AI bay, CubePilot controller, elevon servos, and direct-drive gimbal.
+              <strong>Longitudinal Cross-Section &amp; Component Stations</strong>
+              Drawn cutaway mapping exact fuselage stations from the -95 mm pitot boom and chin EO/LWIR turret through
+              the shielded Orin NX compute bay, CG-straddling Jet-A1 tanks (615 mm), and aft 220 N micro-turbojet.
             </figcaption>
           </figure>
 
           <figure class="vehicle-card">
-            <img src="assets/aegis_uav_blueprint.png" alt="AEGIS-0.5M 3-View Engineering Blueprint" />
+            <img src="assets/aegis_propulsion_gimbal_drawing.png" alt="AEGIS Micro-Turbojet Cross-Section and Two-Axis Gimbal Mechanical Sketches" />
             <figcaption class="cap">
-              <strong>Orthographic 3-View CAD Blueprint</strong>
-              1.80 m wingspan &times; 1.15 m fuselage length, S = 0.48 m&sup2;, AR = 6.75, 14.5 kg MTOW, reflexed MH-60 airfoil
-              with upturned wingtip stabilizers and conformal chin optical turret.
+              <strong>Propulsion Stage &amp; Gimbal Actuator Sketches</strong>
+              Mechanical sketches detailing all 5 single-spool micro-turbojet stages (500 W starter-generator, 118k RPM impeller,
+              1050 K combustor, turbine, nozzle) alongside the 2-axis direct-drive gimbal and 25%-balanced split elevon linkage.
             </figcaption>
           </figure>
         </div>
@@ -436,32 +436,11 @@
     <section id="figures" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Complete Publication-Grade 300-DPI Figures &amp; Engineering Schematics (7 Figures)</h2>
+          <h2>Engineering Schematics &amp; Simulation Plots</h2>
           <span class="section-tag">Generated by visualization/plot_figures.py</span>
         </div>
 
         <div class="figures-grid">
-          <figure class="figure-card">
-            <img src="assets/fig5_sensor_placement_fuselage_map.png" alt="Figure 5: Complete Fuselage Station Map and Sensor Placement" />
-            <figcaption class="figure-caption">
-              <strong>Figure 5.</strong> Complete fuselage station map (x = -95 to 1150 mm) detailing exact placement of Pitot probe, chin 3-stage EO/LWIR turret, dorsal RTK-GNSS, CG fuel bladders, elevon servos, and 220 N micro-turbojet.
-            </figcaption>
-          </figure>
-
-          <figure class="figure-card">
-            <img src="assets/fig6_optical_train_500m_mm.png" alt="Figure 6: 500 m Folded Cassegrain Optical Train and Diffraction Proof" />
-            <figcaption class="figure-caption">
-              <strong>Figure 6.</strong> 3-bounce folded Maksutov-Cassegrain ray diagram + 2 kHz Piezo FSM stabilization stage and 50&ndash;600 m AGL millimeter resolution vs. Rayleigh diffraction limit.
-            </figcaption>
-          </figure>
-
-          <figure class="figure-card">
-            <img src="assets/fig7_delhi_500m_isr_simulation.png" alt="Figure 7: New Delhi 500 m AGL ISR Sector Simulation" />
-            <figcaption class="figure-caption">
-              <strong>Figure 7.</strong> Central New Delhi 4.0 &times; 2.5 km tactical simulation at 500 m AGL showing Mach 0.50 patrol orbit, simulated 6 mm micro-target detection crop (7.8 &times; 2.6 px), and 5-stage mission thrust envelope.
-            </figcaption>
-          </figure>
-
           <figure class="figure-card">
             <img src="assets/fig1_mach05_aerodynamics_gimbal.png" alt="Figure 1: Mach 0.5 Aerodynamics and Gimbal Stabilization" />
             <figcaption class="figure-caption">
@@ -486,7 +465,28 @@
           <figure class="figure-card">
             <img src="assets/fig4_behavioral_anomaly_latency.png" alt="Figure 4: Behavioral Anomaly Timeline and C++23 Latency" />
             <figcaption class="figure-caption">
-              <strong>Figure 4.</strong> Spatio-temporal behavioral anomaly alerts across a 60 s corridor sequence and measured C++23 edge inference latency vs. 2.50 ms budget.
+              <strong>Figure 4.</strong> Spatio-temporal behavioral anomaly alerts across a 60 s corridor sequence and measured C++23 edge inference latency (0.051 ms mean / 0.091 ms p99) vs. 2.50 ms budget.
+            </figcaption>
+          </figure>
+
+          <figure class="figure-card">
+            <img src="assets/fig5_sensor_placement_fuselage_map.png" alt="Figure 5: Complete Fuselage Station Map and Sensor Placement" />
+            <figcaption class="figure-caption">
+              <strong>Figure 5.</strong> Complete fuselage station map (x = -95 to 1150 mm) detailing exact placement of Pitot probe, chin 3-stage EO/LWIR turret, dorsal RTK-GNSS, CG fuel bladders, elevon servos, and 220 N micro-turbojet.
+            </figcaption>
+          </figure>
+
+          <figure class="figure-card">
+            <img src="assets/fig6_optical_train_500m_mm.png" alt="Figure 6: 500 m Folded Cassegrain Optical Train and Diffraction Proof" />
+            <figcaption class="figure-caption">
+              <strong>Figure 6.</strong> 3-bounce folded Maksutov-Cassegrain ray diagram + 2 kHz Piezo FSM stabilization stage and 50&ndash;600 m AGL millimeter resolution vs. Rayleigh diffraction limit.
+            </figcaption>
+          </figure>
+
+          <figure class="figure-card">
+            <img src="assets/fig7_delhi_500m_isr_simulation.png" alt="Figure 7: New Delhi 500 m AGL ISR Sector Simulation" />
+            <figcaption class="figure-caption">
+              <strong>Figure 7.</strong> Central New Delhi 4.0 &times; 2.5 km tactical simulation at 500 m AGL showing Mach 0.50 patrol orbit, simulated 6 mm micro-target detection crop (7.8 &times; 2.6 px), and 5-stage mission thrust envelope.
             </figcaption>
           </figure>
         </div>
@@ -496,8 +496,8 @@
 
   <footer class="mit-footer">
     <div class="container footer-inner">
-      <div>AEGIS-0.5M &middot; Saket Dixit (Sakura-hack01) &middot; MIT License (<a href="https://github.com/Sakura-hack01/AEGIS" target="_blank" rel="noopener" style="color:#ffffff;">GitHub</a>)</div>
-      <div>Visual System: Official MIT Cardinal Red (#750014) &amp; Silver Gray (#8B959E) · 3D Map: MapLibre GL + Esri Satellite + OpenFreeMap OSM 3D + Three.js</div>
+      <div>AEGIS &middot; Saket Dixit (Sakura-hack01) &middot; MIT License (<a href="https://github.com/Sakura-hack01/AEGIS" target="_blank" rel="noopener" style="color:#ffffff;">GitHub</a>)</div>
+      <div>3D Map: MapLibre GL + Esri Satellite + OpenFreeMap OSM 3D + Three.js</div>
     </div>
   </footer>
 
